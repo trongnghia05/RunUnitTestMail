@@ -92,12 +92,11 @@ public class WorkingFile implements WorkingFileInterface {
         String strLine;
         try {
             reader = new BufferedReader(new FileReader(path));
-            while ((strLine = reader.readLine()) != null) {
-                result = strLine;
-            }
+            result = reader.readLine();
+
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING,"IOException :{0}",e);
         }
         return  result;
     }

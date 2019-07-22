@@ -127,7 +127,6 @@ public class WorkingMail implements WorkingMailInterface {
             if (workingFile.extractFile(pathFile)) {
                 runTest();
                 String result = workingFile.readFile(SourceType.PATH_FILE_COMPARE);
-                System.out.println(result);
                 workingMail.sendMail(sender, MessageSend.MESSAGE_4 + result);
                 return true;
             }

@@ -18,7 +18,7 @@ public class Main {
     static WorkingMail workingMail = null;
     static ArrayList<Message> arrMessage = null;
     static Logger logger = Logger.getLogger(WorkingMail.class.getName());
-
+    static Integer sum = 0;
     public static void main(String[] args) throws MessagingException {
 
         PropertyConfigurator.configure(SourceType.PATH_LOG_FILE_PROPERTIE);
@@ -29,9 +29,9 @@ public class Main {
         String username = SourceType.MAIL_NAME;
         String pass = SourceType.MAIL_PASS;
         int timeRun = 0;
-        int sum = 0;
         workingMail = new WorkingMail(SourceType.PATH_LOG_FILE_PROPERTIE);
         workingMail.openMail(host, mailStoreType, username, pass);
+
         while (timeRun < SourceType.TIME_RUN_SERVER) {
             Message[] allMessage = workingMail.readAllMail();
             if(allMessage.length>sum){
@@ -40,8 +40,8 @@ public class Main {
                 sum = allMessage.length;
                 arrMessage = (ArrayList<Message>) convertArrayToList(allMessage);
 
-                if (allMessage.length > SourceType.SIZE_MAX_TASK) {
-                    while (arrMessage.size() > SourceType.SIZE_MAX_TASK) {
+                if (allMessage.length-sum > SourceType.SIZE_MAX_TASK) {
+                    while (arrMessage.size()-sum > SourceType.SIZE_MAX_TASK) {
                         subMassage = convertListToArray(SourceType.SIZE_MAX_TASK);
                         TaskMail taskMail = new TaskMail(subMassage);
                         executor.execute(taskMail);
@@ -74,7 +74,7 @@ public class Main {
     public static Message[] convertListToArray(int size) throws MessagingException {
         Message[] subMassage = new Message[size];
         int i = 0;
-        while (arrMessage.isEmpty()) {
+        while (arrMessage.size()>sum) {
             subMassage[i] = arrMessage.get(i);
             arrMessage.remove(i);
             i++;
