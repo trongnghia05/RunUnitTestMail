@@ -29,36 +29,39 @@ public class Main {
         String username = SourceType.MAIL_NAME;
         String pass = SourceType.MAIL_PASS;
         int timeRun = 0;
-
+        int sum = 0;
         workingMail = new WorkingMail(SourceType.PATH_LOG_FILE_PROPERTIE);
         workingMail.openMail(host, mailStoreType, username, pass);
         while (timeRun < SourceType.TIME_RUN_SERVER) {
             Message[] allMessage = workingMail.readAllMail();
-            Message[] subMassage = new Message[10];
-            Message[] restMassage = null;
-            arrMessage = (ArrayList<Message>) convertArrayToList(allMessage);
-            if (allMessage.length > SourceType.SIZE_MAX_TASK) {
-                while (arrMessage.size() > SourceType.SIZE_MAX_TASK) {
-                    subMassage = convertListToArray(SourceType.SIZE_MAX_TASK);
-                    TaskMail taskMail = new TaskMail(subMassage);
+            if(allMessage.length>sum){
+                Message[] subMassage = new Message[10];
+                Message[] restMassage = null;
+                sum = allMessage.length;
+                arrMessage = (ArrayList<Message>) convertArrayToList(allMessage);
+
+                if (allMessage.length > SourceType.SIZE_MAX_TASK) {
+                    while (arrMessage.size() > SourceType.SIZE_MAX_TASK) {
+                        subMassage = convertListToArray(SourceType.SIZE_MAX_TASK);
+                        TaskMail taskMail = new TaskMail(subMassage);
+                        executor.execute(taskMail);
+                    }
+                    restMassage = new Message[arrMessage.size()];
+                    if (!arrMessage.isEmpty())
+                        restMassage = convertListToArray(arrMessage.size());
+                    TaskMail taskMail = new TaskMail(restMassage);
+                    executor.execute(taskMail);
+                    timeRun += SourceType.TIME_CHECK_MAIL;
+                    try {
+                        Thread.sleep(SourceType.TIME_CHECK_MAIL);
+                    } catch (InterruptedException e) {
+                        logger.log(Level.WARNING, "InterruptedException :{0}", e);
+                    }
+                } else {
+                    TaskMail taskMail = new TaskMail(allMessage);
                     executor.execute(taskMail);
                 }
-                restMassage = new Message[arrMessage.size()];
-                if (!arrMessage.isEmpty())
-                    restMassage = convertListToArray(arrMessage.size());
-                TaskMail taskMail = new TaskMail(restMassage);
-                executor.execute(taskMail);
-                timeRun += SourceType.TIME_CHECK_MAIL;
-                try {
-                    Thread.sleep(7000);
-                } catch (InterruptedException e) {
-                    logger.log(Level.WARNING, "InterruptedException :{0}", e);
-                }
-            } else {
-                TaskMail taskMail = new TaskMail(allMessage);
-                executor.execute(taskMail);
             }
-
         }
     }
 

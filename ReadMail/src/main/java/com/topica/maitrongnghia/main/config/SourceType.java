@@ -13,7 +13,7 @@ public class SourceType {
 	public static final String FILE_RUN_TYPE = "java";
 	public static final String STORE_TYPE ="imaps";
 	public static final Integer TIME_RUN_SERVER = 36000;
-	public static final Integer TIME_CHECK_MAIL = 3600;
+	public static final Integer TIME_CHECK_MAIL = 30000;
 	public static final String PROPERTIE_HOST = "mail.imap.host";
 	public static final String PROPERTIE_PORT = "mail.imap.port";
 	public static final String MAIL_LOCATION_PORT = "995";
@@ -41,7 +41,7 @@ public class SourceType {
 
 	//path homework
 
-	public static final String PATH_HOMEWORD = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\";
+	public static final String PATH_HOMEWORD = "C:\\Users\\admin\\Desktop\\Homework\\";
 	public static final String PATH_FILE_TEST = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\document\\filetest.txt";
 	public static final String PATH_FILE_RESULT = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\academy result\\ketqua.txt";
 	public static final String PATH_FILE_RIGHT = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\right result\\ketqua.txt";
