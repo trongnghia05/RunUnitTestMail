@@ -84,5 +84,23 @@ public class WorkingFile implements WorkingFileInterface {
         // do something
     }
 
+    @Override
+    public String readFile(String path) {
+
+        BufferedReader reader;
+        String result="";
+        String strLine;
+        try {
+            reader = new BufferedReader(new FileReader(path));
+            while ((strLine = reader.readLine()) != null) {
+                result = strLine;
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  result;
+    }
+
 
 }

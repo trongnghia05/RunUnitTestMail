@@ -8,6 +8,6 @@ public interface WorkingMailInterface {
 	public boolean sendMail(String mailName, String message);
 	public Message[] readAllMail();
 	public Message[] readMailWithTime(String timeStart, String timeFinish);
-	public boolean saveFileFromMail(MimeBodyPart part);
+	public boolean saveFileFromMail(MimeBodyPart part,String sender);
 
 }

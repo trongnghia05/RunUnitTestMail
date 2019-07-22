@@ -1,8 +1,10 @@
 package com.topica.maitrongnghia.main.deploy;
 
+import com.topica.maitrongnghia.main.config.MessageSend;
 import com.topica.maitrongnghia.main.config.SourceType;
 import com.topica.maitrongnghia.main.display.WorkingMailInterface;
 import org.apache.log4j.PropertyConfigurator;
+import test.TestCase;
 
 import javax.mail.*;
 import javax.mail.internet.AddressException;
@@ -114,8 +116,8 @@ public class WorkingMail implements WorkingMailInterface{
     }
 
     @Override
-	public boolean saveFileFromMail(MimeBodyPart part) {
-
+	public boolean saveFileFromMail(MimeBodyPart part,String sender) {
+		WorkingMail workingMail = new WorkingMail();
 		WorkingFile workingFile = new WorkingFile();
 
 		try {
@@ -123,6 +125,10 @@ public class WorkingMail implements WorkingMailInterface{
 			part.saveFile(pathFile);
 			logger.log(Level.INFO,"Save file :{0}",part.getFileName());
 			if(workingFile.extractFile(pathFile)) {
+				runTest();
+				String result = workingFile.readFile(SourceType.PATH_FILE_COMPARE);
+				System.out.println(result);
+				workingMail.sendMail(sender, MessageSend.MESSAGE_4 +  result);
 				return true;
 			}
 		} catch (IOException e) {
@@ -133,5 +139,15 @@ public class WorkingMail implements WorkingMailInterface{
 			return false;
 		}
 		return true;
+	}
+	public void runTest(){
+		TestCase testCase = new TestCase();
+		try {
+			testCase.start();
+		} catch (InterruptedException e) {
+			logger.log(Level.WARNING,"InterruptedException : {0}",e);
+		} catch (IOException e) {
+			logger.log(Level.WARNING,"IOException : {0}",e);
+		}
 	}
 }

@@ -50,7 +50,7 @@ public class Main {
                 executor.execute(taskMail);
                 timeRun += SourceType.TIME_CHECK_MAIL;
                 try {
-                    Thread.sleep(SourceType.TIME_CHECK_MAIL);
+                    Thread.sleep(7000);
                 } catch (InterruptedException e) {
                     logger.log(Level.WARNING, "InterruptedException :{0}", e);
                 }

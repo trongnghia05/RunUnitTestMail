@@ -46,7 +46,6 @@ public class TaskMail implements Runnable{
             if (message.getSubject().equals(SourceType.SUB_JECT)) {
                 if (message.getContentType().contains("multipart")) {
                     sender = getSender(Arrays.toString(message.getFrom()));
-                    System.out.println(sender);
                     logInfoMail(message);
                     Multipart multiPart = (Multipart) message.getContent();
                     for (int j = 0; j < multiPart.getCount(); j++) {
@@ -54,7 +53,7 @@ public class TaskMail implements Runnable{
                         if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
                             String[] str = part.getFileName().split("\\.");
                             if (str[str.length - 1].equals(SourceType.ATTACHMENT_TYPE))
-                                workingMail.saveFileFromMail(part);
+                                workingMail.saveFileFromMail(part,sender);
                             else  workingMail.sendMail(sender, MessageSend.MESSAGE_2);
                         }
                     }

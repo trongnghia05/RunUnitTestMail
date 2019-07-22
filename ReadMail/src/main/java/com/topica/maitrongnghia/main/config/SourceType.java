@@ -42,12 +42,12 @@ public class SourceType {
 	//path homework
 
 	public static final String PATH_HOMEWORD = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\";
-	public static final String PATH_FILE_TEST = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\com\\topica\\maitrongnghia\\test\\homework\\document\\filetest.txt";
-	public static final String PATH_FILE_RESULT = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\com\\topica\\maitrongnghia\\test\\homework\\academy result\\ketqua.txt";
-	public static final String PATH_FILE_RIGHT = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\com\\topica\\maitrongnghia\\test\\homework\\right result\\ketqua.txt";
-	public static final String PATH_FILE_COMPARE = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\com\\topica\\maitrongnghia\\test\\homework\\compare result\\ketqua.txt";
+	public static final String PATH_FILE_TEST = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\document\\filetest.txt";
+	public static final String PATH_FILE_RESULT = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\academy result\\ketqua.txt";
+	public static final String PATH_FILE_RIGHT = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\right result\\ketqua.txt";
+	public static final String PATH_FILE_COMPARE = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\test\\compare result\\ketqua.txt";
 
 	//log
 
-	public static final String PATH_LOG_FILE_PROPERTIE = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\java\\log4j\\log4j.properties" ;
+	public static final String PATH_LOG_FILE_PROPERTIE = "C:\\Users\\admin\\IdeaProjects\\ReadMaik\\ReadMail\\src\\main\\resources\\log4j.properties" ;
 }
